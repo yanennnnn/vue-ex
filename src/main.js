@@ -11,11 +11,15 @@ import './bus';
 import Loading from 'vue-loading-overlay';
 import 'vue-loading-overlay/dist/vue-loading.css';
 
+// 價格的filters
+import currencyFilter from './filters/currency';
+
 Vue.use(VueAxios, axios)
 Vue.config.productionTip = false
 
 //啟用元件(全域的方式)
 Vue.component('Loading',Loading);
+Vue.filter('currency',currencyFilter);
 
 //抓取cookies
 //將這段 cookie 存起來，之後在每次發送 API 時，都會將瀏覽器所儲存的 cookie 帶往後端，這樣才能知道是否 有登入
