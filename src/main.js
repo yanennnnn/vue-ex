@@ -6,6 +6,8 @@ import VueAxios from 'vue-axios'
 import App from './App'
 import router from './router'
 import './bus';
+import VeeValidate from 'vee-validate'; //使用驗證套件
+import zhTWValidate from 'vee-validate/dist/locale/zh_TW';
 
 // Vue Loading Overlay Component
 import Loading from 'vue-loading-overlay';
@@ -17,8 +19,10 @@ import currencyFilter from './filters/currency';
 Vue.use(VueAxios, axios)
 Vue.config.productionTip = false
 
-//啟用元件(全域的方式)
-Vue.component('Loading',Loading);
+Vue.use(VeeValidate);//啟用驗證套件
+VeeValidate.Validator.localize('zh_TW', zhTWValidate);
+
+Vue.component('Loading',Loading);//啟用元件(全域的方式)
 Vue.filter('currency',currencyFilter);
 
 //抓取cookies

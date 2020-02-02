@@ -74,6 +74,42 @@
                  </div>
             </div>
         </div>
+        <div class="my-5 row justify-content-center">
+            <form class="col-md-6" @submit.prevent="createOrder">
+                <div class="form-group" >
+                    <label for="useremail">信箱</label>
+                    <input type="email" class="form-control" id="useremail" aria-describedby="emailHelp" name="email" placeholder="輸入信箱" v-model="form.user.email" v-validate="'required|email'"
+                    :class="{'is-invalid': errors.has('email')}">
+                    <small id="emailHelp" class="form-text text-danger" v-if="errors.has('email')">{{ errors.first('email') }}</small>
+                </div>
+                <div class="form-group">
+                    <label for="username">收件人姓名</label>
+                    <input type="text" class="form-control" id="username" name="name" placeholder="輸入姓名" v-model="form.user.name" v-validate="'required'"
+                     :class="{'is-invalid': errors.has('name')}"> <!--驗證為錯誤的時候，顯示is-invalid的樣式(Bs的樣式) -->
+                    <small class="text-danger" v-if="errors.has('name')">姓名不得為空</small> <!--errors.has('input屬性') 為內建 -->
+                </div>
+                <div class="form-group">
+                    <label for="usertel">收件人電話</label>
+                    <input type="tel" class="form-control" id="usertel" name="telphone" placeholder="輸入電話" v-model="form.user.tel" v-validate="'required'"
+                    :class="{'is-invalid': errors.has('telphone')}">
+                    <small class="text-danger" v-if="errors.has('telphone')">電話必須輸入</small>
+                </div>
+                <div class="form-group">
+                    <label for="useraddress">收件人地址</label>
+                    <input type="address" class="form-control" id="useraddress" name="address" placeholder="輸入地址" v-model="form.user.address" v-validate="'required'"
+                    :class="{'is-invalid': errors.has('address')}">
+                    <small class="text-danger" v-if="errors.has('address')">地址必須輸入</small>
+                </div>
+                <div class="form-group">
+                    <label for="useraddress">留言</label>
+                    <textarea name="" id="" class="form-control" cols="30" rows="10"
+                    v-model="form.message"></textarea>
+                </div>
+                <div class="text-right">
+                    <button  class="btn btn-primary">送出訂單</button>
+                </div>
+            </form>
+        </div>
         <!-- Modal -->
         <div class="modal fade" id="productModal" tabindex="-1" role="dialog"
             aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -131,7 +167,16 @@ export default {
         loadingItem: '',
       },
       cart: {}, //購物車資料存放處
-      coupon_code:''//優惠碼存放處
+      coupon_code:'',//優惠碼存放處
+      form:{//訂單資料存放處
+          user:{
+              name:'',
+              email:'',
+              tel:'',
+              address:'',
+          },
+          message:'',
+      }
     };
   },
   methods: {
@@ -209,7 +254,23 @@ export default {
             vm.isLoading = false;
            
         });
-    }
+    },
+    createOrder(){
+        const vm = this;
+        const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/order`;
+        const order = vm.form;
+        this.$validator.validate().then((result) => { //防止沒有驗證也能送出表單
+            if (result) {
+            this.$http.post(url, { data: order }).then((response) => {
+                console.log('訂單已建立', response);
+                // vm.getCart();
+                vm.isLoading = false;
+            });
+            } else {
+                return
+            }
+        });
+    },
   },
   created() {
     this.getProducts();
