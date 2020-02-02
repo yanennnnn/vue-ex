@@ -289,7 +289,7 @@ export default {
         },
     },
     created() {
-            this.getProducts();
+        this.getProducts();
     },
 }
 </script>

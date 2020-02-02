@@ -5,7 +5,9 @@ import 'bootstrap';
 import Login from '@/components/pages/Login.vue';
 import Dashbord from '@/components/Dashbord.vue';
 import Product from '@/components/pages/Product.vue';
+import CouponCode from '@/components/pages/CouponCode.vue';
 import CustomerOrder from '@/components/pages/CustomerOrders.vue';
+
 // import Login from '@/components/pages/Login'
 
 Vue.use(VueRouter);
@@ -37,7 +39,13 @@ export default new VueRouter({
                     name:'products',
                     component:Product,
                     meta: { requiresAuth: true }
-                }
+                },
+                {
+                    path:'coupons',
+                    name:'CouponCode',
+                    component:CouponCode,
+                    meta: { requiresAuth: true }
+                },
             ]
        },
        {
