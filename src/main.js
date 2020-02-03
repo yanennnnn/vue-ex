@@ -6,8 +6,11 @@ import VueAxios from 'vue-axios'
 import App from './App'
 import router from './router'
 import './bus';
+
 import VeeValidate from 'vee-validate'; //使用驗證套件
-import zhTWValidate from 'vee-validate/dist/locale/zh_TW';
+//npm install vee-validate@2.2.15 --save 因為是安裝舊版本的vee-validate，所以以下的中文化可以執行，
+//若使用新版本的vee-validate可至線上影片看如何中文化
+import zhTWValidate from 'vee-validate/dist/locale/zh_TW'; 
 
 // Vue Loading Overlay Component
 import Loading from 'vue-loading-overlay';
