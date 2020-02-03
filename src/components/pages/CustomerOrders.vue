@@ -264,7 +264,10 @@ export default {
             this.$http.post(url, { data: order }).then((response) => {
                 console.log('訂單已建立', response);
                 // vm.getCart();
-                vm.isLoading = false;
+                if (response.data.success) {//建立成功跳轉到customer_checkout
+                     vm.$router.push(`/customer_checkout/${response.data.orderId}`); 
+                }
+                 vm.isLoading = false;
             });
             } else {
                 return
