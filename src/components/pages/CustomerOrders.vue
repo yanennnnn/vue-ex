@@ -50,17 +50,17 @@
                             <td  class="align-middle"><button class="btn btn-outline-danger btn-sm " @click="removeCartItem(item.id)"><i class="far fa-trash-alt"></i></button></td>
                             <td>{{item.product.title}}</td>
                             <td class="text-right">{{item.qty}}/{{ item.product.unit }}</td>
-                            <td class="text-right">{{item.final_total}}</td>
+                            <td class="text-right">{{item.final_total | currency}}</td>
                         </tr>
                     </tbody>
                     <tfoot>
                         <tr>
                             <td colspan="3" class="text-right">總計</td>
-                            <td class="text-right">{{ cart.total }}</td>
+                            <td class="text-right">{{ cart.total | currency}}</td>
                         </tr>
                          <tr v-if="cart.final_total!==cart.total">
                             <td colspan="3" class="text-right text-success">折扣價</td>
-                            <td class="text-right text-success">{{ cart.final_total }}</td>
+                            <td class="text-right text-success">{{ cart.final_total | currency}}</td>
                         </tr>
                     </tfoot>
                 </table>

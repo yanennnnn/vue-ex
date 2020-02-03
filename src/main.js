@@ -16,6 +16,9 @@ import 'vue-loading-overlay/dist/vue-loading.css';
 // 價格的filters
 import currencyFilter from './filters/currency';
 
+//日期
+import dateFilter from './filters/date';
+
 Vue.use(VueAxios, axios)
 Vue.config.productionTip = false
 
@@ -24,6 +27,8 @@ VeeValidate.Validator.localize('zh_TW', zhTWValidate);
 
 Vue.component('Loading',Loading);//啟用元件(全域的方式)
 Vue.filter('currency',currencyFilter);
+
+Vue.filter("date", dateFilter);
 
 //抓取cookies
 //將這段 cookie 存起來，之後在每次發送 API 時，都會將瀏覽器所儲存的 cookie 帶往後端，這樣才能知道是否 有登入

@@ -13,7 +13,7 @@
             </h6>
             <ul class="nav flex-column mb-2">
               <li class="nav-item">
-                <router-link class="nav-link" to="/admin/customer_orders"> 
+                <router-link class="nav-link" to="/admin/orders"> 
                   <i class="fas fa-list-alt mr-1"></i>訂單列表
                 </router-link>
               </li>

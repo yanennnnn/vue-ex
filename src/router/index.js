@@ -8,6 +8,7 @@ import Product from '@/components/pages/Product.vue';
 import CouponCode from '@/components/pages/CouponCode.vue';
 import CustomerOrder from '@/components/pages/CustomerOrders.vue';
 import CustomerCheckout from '@/components/pages/CustomerCheckout.vue';
+import Orders from '@/components/pages/Orders.vue';
 
 // import Login from '@/components/pages/Login'
 
@@ -47,6 +48,13 @@ export default new VueRouter({
                     component:CouponCode,
                     meta: { requiresAuth: true }
                 },
+                {
+                    path:'orders',
+                    name:'Orders',
+                    component:Orders,
+                    meta: { requiresAuth: true }
+                },
+
             ]
        },
        {
